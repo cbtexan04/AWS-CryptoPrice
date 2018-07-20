@@ -58,9 +58,9 @@ def price_intent(event, context):
 
     try:
         price = get_price()
-    except ke as KeyError:
+    except KeyError as ke:
         return statement_builder("Price intent", "invalid currency")
-    except e as Exception:
+    except Exception as e:
         return statement_builder("Price intent", "something went wrong")
 
     return statement_builder("Price intent", "The price of {0} is ${1}".format(token, price))
@@ -71,7 +71,7 @@ def price_intent(event, context):
 
 def lambda_handler(event, context):
     if event['request']['type'] == "LaunchRequest":
-        return statement_builder("title", "body")
+        return statement_builder("Welcome to Crypto Price", "Welcome to crypto price! You can start by asking me for a crypto token's value")
 
     elif event['request']['type'] == "IntentRequest":
         return intent_router(event, context)
