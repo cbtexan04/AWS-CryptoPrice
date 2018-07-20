@@ -1,3 +1,5 @@
+from cryptoprice import get_price
+
 ##############################
 # Builders
 ##############################
