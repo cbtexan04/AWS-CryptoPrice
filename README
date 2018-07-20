@@ -1,0 +1,4 @@
+To build:
+Run python setup.py; this will pull down the request library to your local
+build directory, so that it will be available in aws. The output from this
+script will be a .zip file that you can upload.
