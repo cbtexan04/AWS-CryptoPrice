@@ -1,7 +1,12 @@
 import difflib
+import json
 import requests
 
+JSON_FILE = "data/cryptotickers.json"
+
 def get_price(name):
+    cryptos = json.load(JSON_FILE)
+
     name, ticker = get_key_value(name, cryptos)
     if not name:
         raise KeyError('currency not found')
@@ -13,7 +18,7 @@ def get_price(name):
     return price
 
 def currency_supported(name):
-    cryptos = json_to_dictionary('data/cryptotickers.json')
+    cryptos = json.load(JSON_FILE)
 
     crypto_name, crypto_symbol = get_key_and_value_match(name, cryptos)
     if not crypto_name:
