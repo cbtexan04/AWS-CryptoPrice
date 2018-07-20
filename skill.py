@@ -57,11 +57,11 @@ def price_intent(event, context):
     token = slots['cryptocurrency'].get('value', None)
 
     try:
-        price = get_price()
+        price = get_price(token)
     except KeyError as ke:
         return statement_builder("Price intent", "invalid currency")
     except Exception as e:
-        return statement_builder("Price intent", "something went wrong")
+        return statement_builder("Price intent", "something went wrong: {0}".format(e))
 
     return statement_builder("Price intent", "The price of {0} is ${1}".format(token, price))
 
