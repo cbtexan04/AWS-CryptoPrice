@@ -2,7 +2,7 @@ import difflib
 import requests
 
 def get_price(name):
-    name, ticket = get_key_value(name, cryptos)
+    name, ticker = get_key_value(name, cryptos)
     if not name:
         raise KeyError('currency not found')
 
