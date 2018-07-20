@@ -9,10 +9,6 @@ if __name__ == '__main__':
     be uploaded to the AWS Lambda website and be used as a fully functioning
     lambda function.
     """
-    # Include requests folder for distribution
-    FNULL = open(os.devnull, 'w')
-    call(['mkdir', 'request_resources'])
-    call(['pip', 'install', 'requests', '-t', 'request_resources/requests'], stdout=FNULL, stderr=subprocess.STDOUT)
 
     # Place our resources into zip_folder
     print("Adding contents to zip folder")
@@ -20,7 +16,8 @@ if __name__ == '__main__':
     call(['cp', 'cryptoprice.py', 'zip_folder/'])
     call(['cp', 'skill.py', 'zip_folder/'])
     call(['cp', '-rf', 'data/', 'zip_folder/data/'])
-    call(['cp', '-rf', 'request_resources/requests/', 'zip_folder/requests/'])
+    FNULL = open(os.devnull, 'w')
+    call(['pip', 'install', 'requests', '-t', 'zip_folder'], stdout=FNULL, stderr=subprocess.STDOUT)
 
     # Zip contents of zip_folder
     print("Zipping contents")
@@ -29,8 +26,5 @@ if __name__ == '__main__':
     # Remove folders used to create zip
     print("Removing unneeded files")
     call(['rm', '-rf', 'zip_folder'])
-    for node in os.listdir("./"):
-        if node.startswith('request') or node == 'zip_folder':
-            shutil.rmtree(node)
 
     print("Build success")
