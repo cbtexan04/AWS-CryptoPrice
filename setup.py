@@ -1,8 +1,7 @@
 import os
+import subprocess
 from subprocess import call
 import shutil
-
-BOLD = '\033[1m'
 
 if __name__ == '__main__':
     """
@@ -11,8 +10,9 @@ if __name__ == '__main__':
     lambda function.
     """
     # Include requests folder for distribution
+    FNULL = open(os.devnull, 'w')
     call(['mkdir', 'request_resources'])
-    call(['pip', 'install', 'requests', '-t', 'request_resources/requests'])
+    call(['pip', 'install', 'requests', '-t', 'request_resources/requests'], stdout=FNULL, stderr=subprocess.STDOUT)
 
     # Place our resources into zip_folder
     print("Adding contents to zip folder")
@@ -33,4 +33,4 @@ if __name__ == '__main__':
         if node.startswith('request') or node == 'zip_folder':
             shutil.rmtree(node)
 
-    print(BOLD + "cryptoprice.zip is now created - upload this to AWS Lambda" + BOLD)
+    print("Build success")
