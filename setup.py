@@ -18,7 +18,7 @@ if __name__ == '__main__':
     print("Adding contents to zip folder")
     os.mkdir('zip_folder')
     call(['cp', 'cryptoprice.py', 'zip_folder/'])
-    call(['cp', 'aws.py', 'zip_folder/'])
+    call(['cp', 'skill.py', 'zip_folder/'])
     call(['cp', '-rf', 'data/', 'zip_folder/data/'])
     call(['cp', '-rf', 'request_resources/requests/', 'zip_folder/requests/'])
 
