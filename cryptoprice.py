@@ -5,7 +5,7 @@ import requests
 JSON_FILE = "data/cryptotickers.json"
 
 def get_price(name):
-    cryptos = json.load(JSON_FILE)
+    cryptos = json_to_dictionary(JSON_FILE)
 
     name, ticker = get_key_value(name, cryptos)
     if not name:
@@ -17,8 +17,13 @@ def get_price(name):
 
     return price
 
+def json_to_dictionary(filename):
+    with open(filename, 'r') as json_file:
+        dictionary = json.load(json_file)
+    return dictionary
+
 def currency_supported(name):
-    cryptos = json.load(JSON_FILE)
+    cryptos = json_to_dictionary(JSON_FILE)
 
     crypto_name, crypto_symbol = get_key_and_value_match(name, cryptos)
     if not crypto_name:
